@@ -18,7 +18,7 @@ stages:
           - task: PublishPipelineArtifact@1
             displayName: Publish Artifcats
             inputs:
-              targetPath: 'System.DefaultWorkingDirectory)/terraform-manifests'
+              targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests'
               artifact: 'terraform-manifests-out'
               publishlocation: 'pipeline'
 
@@ -32,7 +32,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifest'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
               backendServiceArm: 'terraform-aks-azurerm-svc-con'
               backendAzureRmOverrideSubscriptionID: 'Azure subscription 1'
               backendAzureRmResourceGroupName: 'AKS-Course'
@@ -44,5 +44,5 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'validate'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-validate'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
               allowTelemetryCollection: false
