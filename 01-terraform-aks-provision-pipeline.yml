@@ -111,7 +111,7 @@ stages:
                   inputs:
                       provider: 'azurerm'
                       command: 'apply'
-                      workingDirectory: '(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'''
+                      workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out/'
                       environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                 
                 
