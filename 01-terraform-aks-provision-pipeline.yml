@@ -1,0 +1,48 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+#Stage -1 : Validate Terraform stage
+##Step 1 : Publish artifacts to pipeline
+##Step 2 : Install latest Terraform
+##step 3 : validate terraform manifests
+
+stages:
+  - stage: TerraformValidate
+    jobs: 
+      - job: TerafromvalidateJob
+        continueOnError: false
+        steps:
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Artifcats
+            inputs:
+              targetPath: 'System.DefaultWorkingDirectory)/terraform-manifests'
+              artifact: 'terraform-manifests-out'
+              publishlocation: 'pipeline'
+
+          - task: TerraformInstaller@1
+            displayName: Terraform Install
+            inputs:
+              terraformVersion: 'latest'
+          
+          - task: TerraformTask@5
+            displayName: Terraform Init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifest'
+              backendServiceArm: 'terraform-aks-azurerm-svc-con'
+              backendAzureRmOverrideSubscriptionID: 'Azure subscription 1'
+              backendAzureRmResourceGroupName: 'AKS-Course'
+              backendAzureRmStorageAccountName: 'terraformtf'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'aks-terraform.tfstate'
+          
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-validate'
+              allowTelemetryCollection: false
