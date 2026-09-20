@@ -41,7 +41,7 @@ stages:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
               backendServiceArm: 'terraform-aks-azurerm-svc-con'
-              backendAzureRmOverrideSubscriptionID: 'Azure subscription 1'
+              backendAzureRmOverrideSubscriptionID: 'c5484afe-88cc-4870-8cc5-4582d2ec0e6f'
               backendAzureRmResourceGroupName: 'AKS-Course'
               backendAzureRmStorageAccountName: 'terraformtf'
               backendAzureRmContainerName: 'tfstate'
@@ -91,7 +91,7 @@ stages:
                     workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                     backendAzureRmUseEntraIdForAuthentication: false
                     backendServiceArm: 'terraform-aks-azurerm-svc-con'
-                    backendAzureRmOverrideSubscriptionID: 'Azure subscription 1'
+                    backendAzureRmOverrideSubscriptionID: 'c5484afe-88cc-4870-8cc5-4582d2ec0e6f'
                     backendAzureRmResourceGroupName: 'AKS-Course'
                     backendAzureRmStorageAccountName: 'terraformtf'
                     backendAzureRmContainerName: 'tfstate'
