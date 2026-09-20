@@ -105,7 +105,7 @@ stages:
                     command: 'custom'
                     workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
                     customCommand: 'force-unlock'
-                    commandOptions: '-force 671e7bd5-94aa-f764-17e2-586620702777'
+                    commandOptions: '-force 48b8c89b-16b8-bc28-c831-2725c7219a7e'
                     environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
 
                 - task: TerraformTask@5
