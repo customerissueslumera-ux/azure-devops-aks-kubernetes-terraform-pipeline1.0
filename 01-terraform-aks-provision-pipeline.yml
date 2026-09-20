@@ -97,16 +97,6 @@ stages:
                     backendAzureRmContainerName: 'tfstate'
                     backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
                 
-                ###Temporary
-                - task: TerraformTask@5
-                  displayName: Terraform Force Unlock (TEMP - remove after use)
-                  inputs:
-                    provider: 'azurerm'
-                    command: 'custom'
-                    workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
-                    customCommand: 'force-unlock'
-                    commandOptions: '-force 48b8c89b-16b8-bc28-c831-2725c7219a7e'
-                    environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
 
                 - task: TerraformTask@5
                   displayName: Terraform Plan
